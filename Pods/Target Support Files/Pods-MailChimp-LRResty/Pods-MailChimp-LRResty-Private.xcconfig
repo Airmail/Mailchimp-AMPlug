@@ -1,0 +1,5 @@
+#include "Pods-MailChimp-LRResty.xcconfig"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Build" "${PODS_ROOT}/Headers/Build/LRResty" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/LRResty" "${PODS_ROOT}/Headers/Public/NSData+Base64"
+OTHER_LDFLAGS = -ObjC
+PODS_ROOT = ${SRCROOT}
