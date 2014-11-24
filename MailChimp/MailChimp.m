@@ -263,6 +263,8 @@ const NSString *availablelists_key = @"lists";
     NSError *err;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dict options:0 error:&err];
 
+    NSString *json = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    
     NSDictionary *response = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&err];
     if ([response objectForKey:@"error"])
     {

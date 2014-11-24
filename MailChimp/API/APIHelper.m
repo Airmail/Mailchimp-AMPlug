@@ -7,12 +7,23 @@
 //
 
 #import "APIHelper.h"
-#import <LRResty.h>
 #import "APIProtocol.h"
 @import AppKit;
 
+static NSOperationQueue *operationQueue = nil;
 
 @implementation APIHelper
+
++(NSOperationQueue *)operationQueue
+{
+    if (operationQueue == nil)
+    {
+        operationQueue = [NSOperationQueue new];
+        [operationQueue setMaxConcurrentOperationCount:1];
+    }
+    
+    return operationQueue;
+}
 
 +(NSString *)getUrlWithAPIKey: (NSString *)apiKey forMethod: (NSString *)method
 {
@@ -29,12 +40,17 @@
 
 +(void)getListsWithAPIKey:(NSString *)apiKey andDelegate:(id)delegate
 {
-    [[LRResty client] post:[self getUrlWithAPIKey:apiKey forMethod:@"lists/list"] payload:[self basePayloadWithAPIKey:apiKey] headers:nil withBlock:^(LRRestyResponse *response) {
-        
-        NSError *err;
-        NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:response.responseData options:NSJSONReadingMutableContainers error:&err];
-        
-        [delegate finishedCallFor:@"GetLists" withData:responseDict];
+    NSString *apiUrl = [self getUrlWithAPIKey:apiKey forMethod:@"lists/list"];
+    NSDictionary *payload = [self basePayloadWithAPIKey:apiKey];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:apiUrl] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20];
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:payload options:0 error:nil];
+    [request setHTTPBody:jsonData];
+    [request setHTTPMethod:@"POST"];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[self operationQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        [delegate finishedCallFor:@"GetLists" withData:dict];
     }];
 }
 
@@ -45,11 +61,16 @@
     [payload setObject:@"false" forKey:@"send_welcome"];
     [payload setObject:listId forKey:@"id"];
     
-    [[LRResty client] post:[self getUrlWithAPIKey:apiKey forMethod:@"lists/subscribe"] payload:payload headers:nil withBlock:^(LRRestyResponse *response) {
-        NSError *err;
-        NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:response.responseData options:NSJSONReadingMutableContainers error:&err];
-        
-        [delegate finishedCallFor:@"Subscibe Email" withData:responseDict];
+    NSString *apiUrl = [self getUrlWithAPIKey:apiKey forMethod:@"lists/subscribe"];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:apiUrl] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20];
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:payload options:0 error:nil];
+    [request setHTTPBody:jsonData];
+    [request setHTTPMethod:@"POST"];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[self operationQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        [delegate finishedCallFor:@"Subscibe Email" withData:dict];
     }];
 }
 
@@ -63,15 +84,16 @@
         [emailsPayload addObject:@{ @"email": @{ @"email": [emails objectAtIndex:e] } }];
     [payload setObject:emailsPayload forKey:@"batch"];
     
-    NSError *err;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:payload options:0 error:&err];
-    NSString *json = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    NSString *apiUrl = [self getUrlWithAPIKey:apiKey forMethod:@"lists/batch-subscribe"];
     
-    [[LRResty client] post:[self getUrlWithAPIKey:apiKey forMethod:@"lists/batch-subscribe"] payload:json headers:nil withBlock:^(LRRestyResponse *response) {
-        NSError *err;
-        NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:response.responseData options:NSJSONReadingMutableContainers error:&err];
-        
-        [delegate finishedCallFor:@"Batch Subscibe Email" withData:responseDict];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:apiUrl] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:20];
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:payload options:0 error:nil];
+    [request setHTTPBody:jsonData];
+    [request setHTTPMethod:@"POST"];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[self operationQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        [delegate finishedCallFor:@"Subscibe Email" withData:dict];
     }];
 }
 
