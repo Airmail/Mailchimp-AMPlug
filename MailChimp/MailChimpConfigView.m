@@ -8,7 +8,7 @@
 
 #import "MailChimpConfigView.h"
 #import "MailChimp.h"
-#import "APIHelper.h"
+#import "APIHelperMailChimp.h"
 
 @interface MailChimpConfigView ()
 
@@ -147,7 +147,7 @@
 {
     NSString *apiKey = self.apiKey.stringValue;
     if (apiKey.length >= 36)
-        [APIHelper getListsWithAPIKey:apiKey andDelegate:self];
+        [APIHelperMailChimp getListsWithAPIKey:apiKey andDelegate:self];
     else
     {
         NSAlert *alert = [[NSAlert alloc] init];

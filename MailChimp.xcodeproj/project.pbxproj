@@ -10,7 +10,7 @@
 		9B38FC201A07988E00508DC8 /* MailChimp.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B38FC1F1A07988E00508DC8 /* MailChimp.m */; };
 		9B38FC221A0798A800508DC8 /* AMPluginFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B38FC211A0798A800508DC8 /* AMPluginFramework.framework */; };
 		9B38FC251A079B6B00508DC8 /* MailChimpConfigView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B38FC241A079B6B00508DC8 /* MailChimpConfigView.m */; };
-		9B38FC291A07C11200508DC8 /* APIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B38FC281A07C11200508DC8 /* APIHelper.m */; };
+		9B38FC291A07C11200508DC8 /* APIHelperMailChimp.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B38FC281A07C11200508DC8 /* APIHelperMailChimp.m */; };
 		9BD819EE1A227CD400F89095 /* Mailchimp.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BD819ED1A227CD400F89095 /* Mailchimp.png */; };
 /* End PBXBuildFile section */
 
@@ -22,8 +22,8 @@
 		9B38FC211A0798A800508DC8 /* AMPluginFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AMPluginFramework.framework; sourceTree = "<group>"; };
 		9B38FC231A079B6B00508DC8 /* MailChimpConfigView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailChimpConfigView.h; sourceTree = "<group>"; };
 		9B38FC241A079B6B00508DC8 /* MailChimpConfigView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailChimpConfigView.m; sourceTree = "<group>"; };
-		9B38FC271A07C11200508DC8 /* APIHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = APIHelper.h; path = API/APIHelper.h; sourceTree = "<group>"; };
-		9B38FC281A07C11200508DC8 /* APIHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = APIHelper.m; path = API/APIHelper.m; sourceTree = "<group>"; };
+		9B38FC271A07C11200508DC8 /* APIHelperMailChimp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = APIHelperMailChimp.h; path = API/APIHelperMailChimp.h; sourceTree = "<group>"; };
+		9B38FC281A07C11200508DC8 /* APIHelperMailChimp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = APIHelperMailChimp.m; path = API/APIHelperMailChimp.m; sourceTree = "<group>"; };
 		9B4D5DF31A07CED0001C37EC /* APIProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = APIProtocol.h; path = API/APIProtocol.h; sourceTree = "<group>"; };
 		9BD819ED1A227CD400F89095 /* Mailchimp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mailchimp.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -90,8 +90,8 @@
 		9B38FC261A07C0F800508DC8 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				9B38FC271A07C11200508DC8 /* APIHelper.h */,
-				9B38FC281A07C11200508DC8 /* APIHelper.m */,
+				9B38FC271A07C11200508DC8 /* APIHelperMailChimp.h */,
+				9B38FC281A07C11200508DC8 /* APIHelperMailChimp.m */,
 				9B4D5DF31A07CED0001C37EC /* APIProtocol.h */,
 			);
 			name = API;
@@ -165,7 +165,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B38FC201A07988E00508DC8 /* MailChimp.m in Sources */,
-				9B38FC291A07C11200508DC8 /* APIHelper.m in Sources */,
+				9B38FC291A07C11200508DC8 /* APIHelperMailChimp.m in Sources */,
 				9B38FC251A079B6B00508DC8 /* MailChimpConfigView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

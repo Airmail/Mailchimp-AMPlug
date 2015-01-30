@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface APIHelper : NSObject
+@interface APIHelperMailChimp : NSObject
 
 +(void)getListsWithAPIKey: (NSString *)apiKey andDelegate: (id)delegate;
 +(void)subscribeEmail: (NSString *)email toList: (NSString *)listId withAPIKey: (NSString *)apiKey andDelegate: (id)delegate;

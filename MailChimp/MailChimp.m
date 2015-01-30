@@ -8,7 +8,7 @@
 
 #import "MailChimp.h"
 #import "MailChimpConfigView.h"
-#import "APIHelper.h"
+#import "APIHelperMailChimp.h"
 
 const NSString *apikey_key = @"apikey";
 const NSString *defaultlistid_key = @"defaultlistid";
@@ -190,12 +190,12 @@ const NSString *availablelists_key = @"lists";
         if (emails.count == 1)
         {
             //Single
-            [APIHelper subscribeEmail:[emails objectAtIndex:0] toList:defaultListId withAPIKey:apiKey andDelegate:self];
+            [APIHelperMailChimp subscribeEmail:[emails objectAtIndex:0] toList:defaultListId withAPIKey:apiKey andDelegate:self];
         }
         else
         {
             //Multiple
-            [APIHelper batchSubscribeEmail:emails toList:defaultListId withAPIKey:apiKey andDelegate:self];
+            [APIHelperMailChimp batchSubscribeEmail:emails toList:defaultListId withAPIKey:apiKey andDelegate:self];
         }
         
         [[NSSound soundNamed:@"Hero"] play];
