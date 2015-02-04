@@ -44,7 +44,7 @@
             
             self.apiKey = [[NSTextField alloc] initWithFrame:CGRectMake(x, y, 260.0f, 22.0f)];
             [self.apiKey setEditable: YES];
-            [self.apiKey setPlaceholderString:@"API Key from your account"];
+            [self.apiKey setStringValue:@"API Key from your account"];
             
             NSString *apiKey = [[self myPlugin] getAPIKey];
             if (apiKey != nil)
